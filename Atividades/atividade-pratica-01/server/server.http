@@ -1,0 +1,181 @@
+GET http://localhost:5000/estados
+
+###
+POST http://localhost:5000/estados
+Content-Type: application/json
+
+{
+    "nome": "Bahia",
+    "sigla": "BH"
+}
+
+###
+PUT http://localhost:5000/estados
+Content-Type: application/json
+
+{
+    "id": 5,
+    "nome": "Bahia",
+    "sigla": "BA"
+}
+
+###
+DELETE http://localhost:5000/estados
+Content-Type: application/json
+
+{
+    "id": 3
+}
+
+###
+POST http://localhost:5000/cidades
+Content-Type: application/json
+
+{
+    "nome": "Cidade_Teste",
+    "estado_id": 2
+}
+
+###
+PUT http://localhost:5000/cidades
+Content-Type: application/json
+
+{
+    "id": 3,
+    "nome": "Itaúna",
+    "estado_id": 1
+}
+
+###
+DELETE http://localhost:5000/cidades
+Content-Type: application/json
+
+{
+    "id": 4
+}
+
+###
+POST http://localhost:5000/sangues
+Content-Type: application/json
+
+{
+    "tipo": "Z",
+    "fator": "-"
+}
+
+###
+PUT http://localhost:5000/sangues
+Content-Type: application/json
+
+{
+    "id": "3",
+    "tipo": "O",
+    "fator": "-"
+}
+
+###
+DELETE http://localhost:5000/sangues
+Content-Type: application/json
+
+{
+    "id": "4"
+}
+
+###
+POST http://localhost:5000/pessoas
+Content-Type: application/json
+
+{
+    "nome": "Tatis--------",
+    "rua": "Rua Francisco Alvez",
+    "numero": "21",
+    "complemento": "ap. 202",
+    "rg": "MG-00.000.111",
+    "cidade_id": 2,
+    "tipo_id": 2
+}
+
+###
+PUT http://localhost:5000/pessoas
+Content-Type: application/json
+
+{
+    "id": "3",
+    "nome": "Tatiane",
+    "rua": "Rua Francisco Alvez",
+    "numero": "21",
+    "complemento": "ap. 202",
+    "rg": "MG-00.000.111",
+    "cidade_id": 2,
+    "tipo_id": 2
+}
+
+###
+DELETE http://localhost:5000/pessoas
+Content-Type: application/json
+
+{
+    "id": "4"
+}
+
+###
+POST http://localhost:5000/coletas
+Content-Type: application/json
+
+{
+    "nome": "Viva Mundo Feliz",
+    "rua": "Rua fe1q*df&45-$2",
+    "numero": "890",
+    "complemento": "Ao lado do Super-Nosso",
+    "cidade_id": 2
+}
+
+###
+PUT http://localhost:5000/coletas
+Content-Type: application/json
+
+{
+    "id": 3,
+    "nome": "Viva Mundo Feliz",
+    "rua": "Rua Feijoada",
+    "numero": "89",
+    "complemento": "Ao lado do Super-Nosso",
+    "cidade_id": 2
+}
+
+###
+DELETE http://localhost:5000/coletas
+Content-Type: application/json
+
+{
+    "id": "4"
+}
+
+###
+POST http://localhost:5000/doar
+Content-Type: application/json
+
+{
+    "data": "2020-06-18T15:30:00Z",
+    "pessoa_id": 1,
+    "local_id": 3
+}
+
+###
+PUT http://localhost:5000/doar
+Content-Type: application/json
+
+{
+    "id": "3",
+    "data": "2023-02-01T15:30:00Z",
+    "pessoa_id": 2,
+    "local_id": 2
+}
+
+###
+DELETE http://localhost:5000/doar
+Content-Type: application/json
+
+{
+    "id": "4"
+}

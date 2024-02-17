@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Estado {
+  id    Int    @id @default(autoincrement())
+  nome  String
+  sigla String @unique
+
+  created_at DateTime @default(now()) // Salva o momento em que o registro foi criado
+  updated_at DateTime @updatedAt      // Salva o momento em que o registro foi atualizado
+
+  cidades Cidade[] // Criando uma relaçõ multipla, ou seja, um Estado tem varias Cidades
+
+  // O nome dado a tabela sera:
+  @@map("estados")
+}
+
+model Cidade {
+  id        Int    @id @default(autoincrement())
+  nome      String
+  estado_id Int
+
+  estado Estado @relation(fields: [estado_id], references: [id]) // Criando uma relação
+
+  created_at  DateTime      @default(now()) // Salva o momento em que o registro foi criado
+  updated_at  DateTime      @updatedAt      // Salva o momento em que o registro foi atualizado
+  localColeta LocalColeta[]
+  pessoas     Pessoas[]
+
+  // O nome dado a tabela sera:
+  @@map("cidades")
+}
+
+model LocalColeta {
+  id          Int    @id @default(autoincrement())
+  nome        String
+  rua         String
+  numero      String
+  complemento String
+  cidade_id   Int
+
+  cidade Cidade @relation(fields: [cidade_id], references: [id])
+
+  created_at DateTime  @default(now())  // Salva o momento em que o registro foi criado
+  updated_at DateTime  @updatedAt       // Salva o momento em que o registro foi atualizado
+  doacoes    Doacoes[]
+
+  // O nome dado a tabela sera:
+  @@map("locais_coleta")
+}
+
+model Doacoes {
+  id        Int      @id @default(autoincrement())
+  pessoa_id Int
+  local_id  Int
+  data      DateTime
+
+  pessoa Pessoas     @relation(fields: [pessoa_id], references: [id])
+  lacal  LocalColeta @relation(fields: [local_id], references: [id])
+
+  created_at DateTime @default(now()) // Salva o momento em que o registro foi criado
+  updated_at DateTime @updatedAt      // Salva o momento em que o registro foi atualizado
+
+  // O nome dado a tabela sera:
+  @@map("doacoes")
+}
+
+model Pessoas {
+  id          Int    @id @default(autoincrement())
+  nome        String
+  rua         String
+  numero      String
+  complemento String
+  rg          String
+  cidade_id   Int
+  tipo_id     Int
+
+  cidade Cidade         @relation(fields: [cidade_id], references: [id])
+  tipo   TipoSanguineos @relation(fields: [tipo_id], references: [id])
+
+  created_at DateTime  @default(now())  // Salva o momento em que o registro foi criado
+  updated_at DateTime  @updatedAt       // Salva o momento em que o registro foi atualizado
+  doacoes    Doacoes[]
+
+  // O nome dado a tabela sera:
+  @@map("pessoas")
+}
+
+model TipoSanguineos {
+  id    Int    @id @default(autoincrement())
+  tipo  String
+  fator String
+
+  created_at DateTime  @default(now())  // Salva o momento em que o registro foi criado
+  updated_at DateTime  @updatedAt       // Salva o momento em que o registro foi atualizado
+  pessoas    Pessoas[]
+
+  // O nome dado a tabela sera:
+  @@map("tipos_sanguineos")
+}
