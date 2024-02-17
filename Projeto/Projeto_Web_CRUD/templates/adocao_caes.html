@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adoção de Cães</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .pet-details {
+            width: 45%;
+            float: left;
+            margin: 10px 10px 70px;
+            background-color: #fff;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: left;
+            background-image: url("/static/img/cardPet.jpg");
+            color: #ff0303;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        button{
+            display: flex;
+            justify-content: center;
+            margin: auto;
+        }
+
+/* -------------------------------------------------- Cabeçario -------------------------------------------------------*/
+        header {
+            background-color: #333; /* Cor mais escura para o cabeçalho */
+            padding: 50px;
+            text-align: center;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            margin-right: 8%;
+            margin-left: 8%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../perfilhamento">Home</a>
+        <a href="../contatos">Contatos</a>
+        <a href="https://g1.globo.com/mg/grande-minas/eobicho/noticia/adocao-de-animais-entenda-porque-o-ato-de-amor-faz-bem-para-todos.ghtml">Notícias</a>
+        <a href="../sobrenos">Sobre Nós</a>
+    </header>
+
+    <div class="container" id="petContainer">
+        {% for chave, pet in dados.items() %}
+            <div class="pet-details">
+                <h2>{{ pet['Nome'] }}</h2>
+
+                {% if 'Idade' in pet %}
+                    <p>Idade: {{ pet['Idade'] }}</p>
+                {% endif %}
+
+                {% if 'Sexo' in pet %}
+                    <p>Sexo: {{ pet['Sexo'] }}</p>
+                {% endif %}
+
+                {% if 'Personalidade' in pet %}
+                    <p>Personalidade: {{ pet['Personalidade'] }}</p>
+                {% endif %}
+
+                {% if 'Brinquedo Favorito' in pet %}
+                    <p>Brinquedo Favorito: {{ pet['Brinquedo Favorito'] }}</p>
+                {% endif %}
+
+                {% if 'Vacinas Ausentes' in pet %}
+                    <p>Vacinas Ausentes: {{ pet['Vacinas Ausentes'] }}</p>
+                {% endif %}
+
+                {% if 'Condição Especial' in pet %}
+                    <p>Condição Especial: {{ pet['Condição Especial'] }}</p>
+                {% endif %}
+
+                {% if 'Tel para adoção' in pet %}
+                    <p>Tel para adoção: {{ pet['Tel para adoção'] }}</p>
+                {% endif %}
+
+                <p style="font-size: 13px;">ID: {{ chave }}</p>
+
+                <br>
+                <button onclick="atualizarPetCard(this, '{{ chave }}')" style="background-color: #008CBA">Atualizar</button>
+                <br>
+                <button onclick="deletarPetCard(this, '{{ chave }}')" style="background-color: #f44336">Deletar</button>
+            </div>
+        {% endfor %}
+
+        <div id="customPetCard" style="display: none;">
+            <div class="pet-details">
+                <h2>Novo Pet</h2>
+                <p>Idade: 0 anos</p>
+                <p>Sexo: Indefinido</p>
+
+                <p>Personalidade: N/A</p>
+                <p>Brinquedo Favorito: N/A</p>
+                <p>Vacinas Ausentes: N/A</p>
+                <p>Condição Especial: N/A</p>
+
+                <p>Tel para adoção: N/A</p>
+            </div>
+        </div>
+
+        <button onclick="adicionarPetCard()" style="background-color: #04AA6D;">Adicionar Pet</button>
+
+    </div>
+
+    <script>
+
+        function adicionarPetCard() {
+            var container = document.getElementById("petContainer");
+            var novoPetCard = document.getElementById("customPetCard").cloneNode(true);
+
+            novoPetCard.removeAttribute("id");
+            novoPetCard.style.display = "block";
+
+            // Obtenha os atributos do usuário (exemplo: a partir de inputs de texto)
+            var nome = prompt("Digite o nome do animal:");
+            var idade = prompt("Digite a idade do animal:");
+            var sexo = prompt("Digite o sexo do animal:");
+
+            var personalidade = prompt("Digite a personalidade do animal:");
+            var brinquedo_favorito = prompt("Digite o brinquedo favorito do animal:");
+            var vacinas_ausentes = prompt("Digite a vacina ausente do animal:");
+            var condicao_especial = prompt("Digite a condição especial do animal:");
+
+            var telefone = prompt("Digite o telefone para adoção do animal:");
+
+            // Verifique se os valores são diferentes de null e diferentes de uma string vazia antes de modificar o conteúdo do novo pet-card
+            if (nome !== null && nome !== "") {
+                novoPetCard.querySelector("h2").textContent = "Nome: " + nome;
+            } else {
+                novoPetCard.querySelector("h2").style.display = "none";
+            }
+
+            if (idade !== null && idade !== "") {
+                novoPetCard.querySelector("p:nth-child(2)").textContent = "Idade: " + idade + " anos";
+            } else {
+                novoPetCard.querySelector("p:nth-child(2)").style.display = "none";
+            }
+
+            if (sexo !== null && sexo !== "") {
+                novoPetCard.querySelector("p:nth-child(3)").textContent = "Sexo: " + sexo;
+            } else {
+                novoPetCard.querySelector("p:nth-child(3)").style.display = "none";
+            }
+
+            if (personalidade !== null && personalidade !== "") {
+                novoPetCard.querySelector("p:nth-child(4)").textContent = "Personalidade: " + personalidade;
+            } else {
+                novoPetCard.querySelector("p:nth-child(4)").style.display = "none";
+            }
+
+            if (brinquedo_favorito !== null && brinquedo_favorito !== "") {
+                novoPetCard.querySelector("p:nth-child(5)").textContent = "Brinquedo Favorito: " + brinquedo_favorito;
+            } else {
+                novoPetCard.querySelector("p:nth-child(5)").style.display = "none";
+            }
+
+            if (vacinas_ausentes !== null && vacinas_ausentes !== "") {
+                novoPetCard.querySelector("p:nth-child(6)").textContent = "Vacina Ausente: " + vacinas_ausentes;
+            } else {
+                novoPetCard.querySelector("p:nth-child(6)").style.display = "none";
+            }
+
+            if (condicao_especial !== null && condicao_especial !== "") {
+                novoPetCard.querySelector("p:nth-child(7)").textContent = "Condição Especial: " + condicao_especial;
+            } else {
+                novoPetCard.querySelector("p:nth-child(7)").style.display = "none";
+            }
+
+            if (telefone !== null && telefone !== "") {
+                novoPetCard.querySelector("p:nth-child(8)").textContent = "Tel para adoção: " + telefone;
+            } else {
+                novoPetCard.querySelector("p:nth-child(8)").style.display = "none";
+            }
+
+            container.appendChild(novoPetCard);
+
+            // Criar um objeto FormData para enviar os dados como formulário
+            var formData = new FormData();
+            formData.append('nome_pet', nome);
+            formData.append('idade_pet', idade);
+            formData.append('sexo_pet', sexo);
+            formData.append('personalidade_pet', personalidade);
+            formData.append('brinquedo_favorito_pet', brinquedo_favorito);
+            formData.append('vacinas_ausentes_pet', vacinas_ausentes);
+            formData.append('condicao_especial_pet', condicao_especial);
+            formData.append('telefone_pet', telefone);
+
+
+            // Enviar dados usando AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/adicionarTabelas_Caes', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert(xhr.responseText); // Exibir a resposta do servidor
+                }
+            };
+            xhr.send(formData);
+
+        }
+
+        function deletarPetCard(button, petId) {
+            var confirmacao = confirm("Tem certeza que deseja deletar este pet?");
+
+            if (confirmacao) {
+                var container = document.getElementById("petContainer");
+                var petCard = button.parentNode;
+                container.removeChild(petCard);
+
+                // Enviar o ID para o servidor
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/deletarPet_Caes', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        alert(xhr.responseText); // Exibir a resposta do servidor
+                    }
+                };
+                xhr.send('petId=' + encodeURIComponent(petId));
+            }
+        }
+
+        function atualizarPetCard(button, petId) {
+            try {
+                var container = document.getElementById("petContainer");
+                var petCard = button.parentNode;
+
+                // Obtenha os atributos do usuário (exemplo: a partir de inputs de texto)
+                var nome = prompt("Digite o novo nome do animal:");
+                var idade = prompt("Digite a nova idade do animal:");
+                var sexo = prompt("Digite o novo sexo do animal:");
+
+                var personalidade = prompt("Digite a nova personalidade do animal:");
+                var brinquedo_favorito = prompt("Digite o novo brinquedo favorito do animal:");
+                var vacinas_ausentes = prompt("Digite a nova vacina ausente do animal:");
+                var condicao_especial = prompt("Digite a nova condição especial do animal:");
+
+                var telefone = prompt("Digite o novo telefone para adoção do animal:");
+
+                // Enviar os dados para o servidor
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/atualizarPet_Caes', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        alert(xhr.responseText); // Exibir a resposta do servidor
+                    }
+                };
+                xhr.send('petId=' + encodeURIComponent(petId) +
+                         '&nome=' + encodeURIComponent(nome) +
+                         '&idade=' + encodeURIComponent(idade) +
+                         '&sexo=' + encodeURIComponent(sexo) +
+                         '&personalidade=' + encodeURIComponent(personalidade) +
+                         '&brinquedo_favorito=' + encodeURIComponent(brinquedo_favorito) +
+                         '&vacinas_ausentes=' + encodeURIComponent(vacinas_ausentes) +
+                         '&condicao_especial=' + encodeURIComponent(condicao_especial) +
+                         '&telefone=' + encodeURIComponent(telefone));
+            } catch (error) {
+                console.error("Erro na função atualizarPetCard:", error);
+                alert("Ocorreu um erro ao atualizar o pet. Consulte o console para mais detalhes.");
+            }
+        }
+
+    </script>
+
+</body>
+</html>

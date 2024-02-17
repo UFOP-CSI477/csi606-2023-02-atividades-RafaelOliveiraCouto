@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fffacd;
+            margin: 0;
+            padding: 0;
+        }
+
+        .person-container {
+            text-align: center;
+            margin: 20px;
+            border-bottom: 10px solid #555;
+        }
+
+        .person {
+            display: inline-block;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .person img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .person-info {
+            color: #fff;
+            background-color: #d2b48c;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 20%;
+        }
+
+
+/* -------------------------------------------------- Cabeçario -------------------------------------------------------*/
+        header {
+            background-color: #333; /* Cor mais escura para o cabeçalho */
+            padding: 50px;
+            text-align: center;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            margin-right: 8%;
+            margin-left: 8%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="../perfilhamento">Home</a>
+        <a href="#" onclick="return false">Contatos</a>
+        <a href="https://g1.globo.com/mg/grande-minas/eobicho/noticia/adocao-de-animais-entenda-porque-o-ato-de-amor-faz-bem-para-todos.ghtml">Notícias</a>
+        <a href="../sobrenos">Sobre Nós</a>
+    </header>
+
+    <div class="person-container">
+        <div class="person">
+            <img src="/static/img/contato1.jpg" alt="Pessoa 1">
+        </div>
+        <div class="person-info">
+            <h2>Rafael Oliveira Couto</h2>
+            <p>Telefone: (31) 99402-0330</p>
+            <p>Email: rafael.couto@aluno.ufop.edu.br</p>
+        </div>
+    </div>
+
+    <div class="person-container">
+        <div class="person">
+            <img src="/static/img/contato2.jpg" alt="Pessoa 2">
+        </div>
+        <div class="person-info">
+            <h2>Caio Henrique Ferreira Pereira</h2>
+            <p>Telefone: (31) 9737-5066</p>
+            <p>Email: caio.hfp@aluno.ufop.edu.br</p>
+        </div>
+    </div>
+
+</body>
+</html>

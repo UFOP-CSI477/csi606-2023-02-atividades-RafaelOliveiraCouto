@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP-Perfilhação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffacd;
+            overflow-x: hidden; /* Impede a barra de rolagem horizontal */
+        }
+
+        header {
+            background-color: #333; /* Cor mais escura para o cabeçalho */
+            padding: 50px;
+            text-align: center;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+            margin-right: 8%;
+            margin-left: 8%;
+        }
+
+        .corpo {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 1% 10% 1% 25%;
+        }
+
+        .bloco-colorido {
+            border: solid;
+            background-color: #ffeb3b; /* Amarelo */
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: black; /* Texto em preto */
+        }
+
+        .imagens {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0% 10% 0% 25%;
+        }
+
+        .imagens img {
+            border-radius: 10px;
+            width: 450px;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .sidebar {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            text-align: left;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            overflow-y: auto; /* Permite rolagem na barra lateral */
+            width: 200px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px 0;
+            text-decoration: none;
+            border-bottom: 1px solid #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" onclick="return false">Home</a>
+        <a href="../contatos">Contatos</a>
+        <a href="https://g1.globo.com/mg/grande-minas/eobicho/noticia/adocao-de-animais-entenda-porque-o-ato-de-amor-faz-bem-para-todos.ghtml">Notícias</a>
+        <a href="../sobrenos">Sobre Nós</a>
+    </header>
+
+    <div class="corpo">
+        <div class="bloco-colorido">
+            <h4>Adotar um animal é mais do que um gesto de generosidade
+                é uma decisão que enriquecerá não apenas a vida do bichinho,
+                mas também a sua própria. Ao abrir as portas do seu lar para um companheiro peludo,
+                você está dando a ele uma segunda chance, uma oportunidade de experimentar o calor de um lar amoroso.
+                Os benefícios emocionais e físicos de ter um animal de estimação são incontáveis.
+                A lealdade incondicional, a alegria contagiante e a companhia constante que um animal oferece são
+                verdadeiros tesouros. Ao adotar, você contribui para a redução do número de animais abandonados,
+                proporcionando uma vida digna a um ser que depende do amor humano. É uma jornada que vai além da simples posse,
+                é um compromisso emocional que transforma vidas, ensinando-nos sobre compaixão, responsabilidade e empatia.
+                Abra seu coração e seu lar para um novo amigo peludo, e descubra como essa decisão não só preenche
+                o vazio nos corações deles, mas também enriquece o seu próprio mundo de maneiras que você nem poderia imaginar.</h4>
+        </div>
+    </div>
+
+    <div class="imagens">
+            <!-- Outra Forma de Fazer: <img src="{{url_for('static', filename='img/img1.jpg')}}" alt="Imagem 1"> -->
+            <img src="/static/img/img1.jpg" alt="Imagem 1">
+            <img src="/static/img/img2.jpeg" alt="Imagem 2">
+    </div>
+
+    <div class="sidebar">
+        <h2>Animais</h2>
+        <a href="../adocao_axolotes">Axolotes</a>
+        <a href="../adocao_caes">Cães</a>
+        <a href="../adocao_chinchilas">Chinchilas</a>
+        <a href="../adocao_coelhos">Coelhos</a>
+        <a href="../adocao_furoes">Furões</a>
+        <a href="../adocao_gatos">Gatos</a>
+        <a href="../adocao_hamsters">Hamsters</a>
+        <a href="../">Sair</a>
+    </div>
+
+</body>
+</html>
